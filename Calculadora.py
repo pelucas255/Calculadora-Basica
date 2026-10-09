@@ -1,46 +1,66 @@
 
 # Calculadora básica en Python
 
-print("===== CALCULADORA BÁSICA =====")
-print("1. Sumar")
-print("2. Restar")
-print("3. Multiplicar")
-print("4. Dividir")
-print("5. Salir")
+# Funciones matemáticas
+def sumar(a, b):
+    return a + b
 
-while True:
-    opcion = input("\nSelecciona una opción: ")
 
-    if opcion == "5":
-        print("¡Hasta luego!")
-        break
+def restar(a, b):
+    return a - b
 
-    if opcion not in ["1", "2", "3", "4"]:
-        print("Opción no válida. Intenta de nuevo.")
-        continue
 
-    try:
-        num1 = float(input("Ingresa el primer número: "))
-        num2 = float(input("Ingresa el segundo número: "))
+def multiplicar(a, b):
+    return a * b
 
-        if opcion == "1":
-            resultado = num1 + num2
-            print("Resultado:", resultado)
 
-        elif opcion == "2":
-            resultado = num1 - num2
-            print("Resultado:", resultado)
+def dividir(a, b):
+    if b == 0:
+        raise ZeroDivisionError("No se puede dividir entre cero")
+    return a / b
 
-        elif opcion == "3":
-            resultado = num1 * num2
-            print("Resultado:", resultado)
 
-        elif opcion == "4":
-            if num2 == 0:
-                print("Error: no se puede dividir entre cero.")
+# Menú principal
+def main():
+    print("===== CALCULADORA BÁSICA =====")
+    print("1. Sumar")
+    print("2. Restar")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Salir")
+
+    while True:
+        opcion = input("\nSelecciona una opción: ")
+
+        if opcion == "5":
+            print("¡Hasta luego!")
+            break
+
+        if opcion not in ["1", "2", "3", "4"]:
+            print("Opción no válida. Intenta de nuevo.")
+            continue
+
+        try:
+            num1 = float(input("Ingresa el primer número: "))
+            num2 = float(input("Ingresa el segundo número: "))
+
+            if opcion == "1":
+                resultado = sumar(num1, num2)
+            elif opcion == "2":
+                resultado = restar(num1, num2)
+            elif opcion == "3":
+                resultado = multiplicar(num1, num2)
             else:
-                resultado = num1 / num2
-                print("Resultado:", resultado)
+                resultado = dividir(num1, num2)
 
-    except ValueError:
-        print("Error: debes ingresar números válidos.")
+            print("Resultado:", resultado)
+
+        except ZeroDivisionError:
+            print("Error: no se puede dividir entre cero.")
+        except ValueError:
+            print("Error: debes ingresar números válidos.")
+
+
+# Ejecutar el menú solamente si se abre este archivo
+if __name__ == "__main__":
+    main()
