@@ -1,5 +1,4 @@
-
-name: Pipeline de calculadora Python
+name: CI Calculadora y Raiz Cuadrada
 
 on:
   push:
@@ -7,14 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  construir:
+  pruebas:
     runs-on: ubuntu-latest
 
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Instalar Python
+      - name: Configurar Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -24,6 +23,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-     - name: Verificar operaciones
-  run: |
-    python -c "from Calculadora import sumar, restar, multiplicar, dividir; assert sumar(2, 3) == 5; assert restar(5, 2) == 3; assert multiplicar(3, 4) == 12; assert dividir(8, 2) == 4; print('Todas las operaciones funcionan')"
+      - name: Ejecutar pruebas
+        run: python -m pytest -v
