@@ -11,7 +11,7 @@ from Calculadora import raiz_cuadrada
 # ---------- Caso correcto ----------
 def test_raiz_cuadrada_caso_correcto():
     """La raíz cuadrada de 9 debe ser 3."""
-    assert raiz_cuadrada(9) == 9.0
+    assert raiz_cuadrada(9) == 3.0
 
 
 def test_raiz_cuadrada_numero_decimal():
